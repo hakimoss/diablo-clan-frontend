@@ -1,0 +1,11 @@
+
+
+.ctnReservationPanel {
+    display: flex;
+    flex-direction: column;
+    background-color: #ccc;
+    width: 200px;
+    height: 500px;
+    padding: 10px;
+    
+}

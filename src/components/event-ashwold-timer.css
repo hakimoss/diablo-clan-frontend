@@ -1,0 +1,46 @@
+
+
+.ctnTimerAndTitle {
+    background-color: rgb(233, 231, 231);
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ctnTimerBoss {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.ctnTimesBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    height: 70px;
+    width: 60px;
+}
+
+.ctnTimerBossBilefen {
+    margin-top: 50px;
+}
+
+.ctnDayTime {
+    text-align: center;
+}
+
+
+.ashwoldTitle{
+    text-align: center;
+}
+
+.ashwoldImg{
+    height: 40%;
+}
+
+.titleTimer {
+    font-size: 0.7em;
+}
