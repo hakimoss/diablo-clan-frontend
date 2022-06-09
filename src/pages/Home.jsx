@@ -5,7 +5,7 @@ import EventZavainTimer from '../components/event-zavain-timer';
 import './home.css';
 
 
-const Home: FunctionComponent = () => {
+const Home = () => {
 
 
     return(

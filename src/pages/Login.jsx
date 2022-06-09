@@ -4,7 +4,7 @@ import AccountServices from '../services/account-service';
 import Home from './Home';
 import './login.css';
 
-const Login = () => {
+const Login = ({ getEmailFromLogin }) => {
 
     const history = useNavigate();
 
@@ -26,6 +26,7 @@ const Login = () => {
         if(connected === true) {
             // userFromLogin(email)
             // loginToLogoutFromLogin(true)
+            getEmailFromLogin(email.split("@")[0])
             history('/');
         } else {
             // loginToLogoutFromLogin(false)
