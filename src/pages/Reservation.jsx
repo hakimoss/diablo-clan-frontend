@@ -5,7 +5,7 @@ import { firebase } from '../util/firebase';
 
 const db = firebase.database();
 
-const Reservation = ({ getEmailFromLogin }) => {
+const Reservation = ({ getEmailFromLogin, getProfilFromLogin }) => {
 
     const [isShow, setIsShow] = useState(true);
     const [showReservationData, setShowReservationData] = useState([]);
@@ -20,18 +20,18 @@ const Reservation = ({ getEmailFromLogin }) => {
             snapshot.forEach(childSnapshot =>{
                 let keyName = childSnapshot.key;
                 let data = childSnapshot.val()
-                console.log('data dans le Reservation', data)
+                // console.log('data dans le Reservation', data)
                 
                 if(data !== null) {
                     Object.values(data).map(newData => {
-                        console.log("newData", newData)
+                        // console.log("newData", newData)
                         record.push({"key": keyName, "data": newData})
                     })
                 }
             })
             setShowReservationData(record)
         })
-        console.log("showReservationData", showReservationData)
+        // console.log("showReservationData", showReservationData)
     }, [refreshDataFromCreate])
 
     const handleShowCreate = () =>{
@@ -43,7 +43,7 @@ const Reservation = ({ getEmailFromLogin }) => {
     }
 
     const createReservationToShow = (countRefresh) => {
-        console.log('countRefresh', countRefresh)
+        // console.log('countRefresh', countRefresh)
         setRefreshDataFromCreate(countRefresh)
     }
 
@@ -55,15 +55,16 @@ const Reservation = ({ getEmailFromLogin }) => {
             {isShow ? (
                 <>
                     <button onClick={handleShowCreate}>Create</button>
-                    {showReservationData.map((data) => (
-                        <ShowReservationPanel data={data} />
-
-                    ))}
+                    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}>
+                        {showReservationData.map((data) => (
+                            <ShowReservationPanel getProfilFromLogin={getProfilFromLogin} data={data} />
+                        ))}
+                    </div>
                 </>
             ) : (
                 <>
                     <button onClick={handleShowCreate}>Show</button>
-                    <CreateReservationPanel createReservationToShow={createReservationToShow} getEmailFromLogin={getEmailFromLogin} />
+                    <CreateReservationPanel getProfilFromLogin={getProfilFromLogin} createReservationToShow={createReservationToShow} getEmailFromLogin={getEmailFromLogin} />
                 </>
             )}
         </div>

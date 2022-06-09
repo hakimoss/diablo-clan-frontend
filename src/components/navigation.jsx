@@ -3,7 +3,7 @@ import './navigation.css';
 import { NavLink } from 'react-router-dom'
 
 
-const Navigation = () => {
+const Navigation = ({ getProfilFromLogin }) => {
 
     return(
         <div className='ctnNavigation'>
@@ -19,6 +19,7 @@ const Navigation = () => {
                     <span className='navigationLink'>Guide</span>
                 </NavLink>
             </div>
+            <span className='userNameNavigation'>Bienvenu {getProfilFromLogin[3]}</span>
             
         </div>
     )

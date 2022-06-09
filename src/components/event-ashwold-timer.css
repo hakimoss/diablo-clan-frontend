@@ -8,6 +8,12 @@
     flex-direction: column;
 }
 
+.ctnTitleAlarm {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
 .ctnTimerBoss {
     display: flex;
     justify-content: space-around;

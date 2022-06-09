@@ -14,21 +14,26 @@ import { useState } from "react";
 function App() {
 
   const [email, setEmail] = useState('')
+  const [profil, setProfil] = useState([]);
 
   const getEmailFromLogin = (email) => {
     console.log(email)
     setEmail(email)
   }
 
+  const getProfilFromLogin = (profilFromLogin) => {
+    setProfil(profilFromLogin)
+  }
+ 
   return (
     <Router>
-      <Navigation />
+      <Navigation getProfilFromLogin={profil} />
 
       <Routes>
         <Route exact path='/' element={<PrivateRoute><Home /></PrivateRoute>} />
-        <Route exact path="/reservation" element={<PrivateRoute><Reservation getEmailFromLogin={email} /></PrivateRoute>} />
+        <Route exact path="/reservation" element={<PrivateRoute><Reservation getProfilFromLogin={profil} getEmailFromLogin={email} /></PrivateRoute>} />
         <Route exact path="/guide" element={<PrivateRoute><Guide /></PrivateRoute>} />
-        <Route exact path="/login" element={<Login getEmailFromLogin={getEmailFromLogin} />} />
+        <Route exact path="/login" element={<Login getProfilFromLogin={getProfilFromLogin} getEmailFromLogin={getEmailFromLogin} />} />
         <Route path="*" element={<NotFounds />} />
       </Routes>
       {/* <Routes>

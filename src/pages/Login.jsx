@@ -4,7 +4,7 @@ import AccountServices from '../services/account-service';
 import Home from './Home';
 import './login.css';
 
-const Login = ({ getEmailFromLogin }) => {
+const Login = ({ getEmailFromLogin, getProfilFromLogin }) => {
 
     const history = useNavigate();
 
@@ -22,10 +22,11 @@ const Login = ({ getEmailFromLogin }) => {
         }
 
         const connected = await AccountServices.login(account);
-        console.log(connected)
-        if(connected === true) {
+        console.log(connected[0])
+        if(connected[0] === "true") {
             // userFromLogin(email)
             // loginToLogoutFromLogin(true)
+            getProfilFromLogin(connected)
             getEmailFromLogin(email.split("@")[0])
             history('/');
         } else {

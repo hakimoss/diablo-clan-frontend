@@ -5,7 +5,58 @@
     flex-direction: column;
     background-color: #ccc;
     width: 200px;
-    height: 500px;
-    padding: 10px;
-    
+    height: 200px;
+    padding: 10px;    
+}
+
+.ctnShowReservationPanel {
+    display: flex;
+    flex-direction: column;
+    background-color: #ccc;
+    width: 200px;
+    /* height: 200px; */
+    padding: 10px; 
+    margin: 20px;
+    border-radius: 7px;
+}
+
+.dungeonTitleShowPanel {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.ctnMakerReservation {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.makerNameReservation {
+    margin-left: 10px;
+    font-size: 1.2em;
+}
+
+.ctnProfilNameAndNumber {
+    display: flex;
+
+}
+
+.iconBattleNetReservation {
+    font-size: 1.2em;
+}
+
+.ctnProfilInRoom {
+    margin-top: 10px;
+    margin-left: auto;
+    position: absolute;
+    transform: translate(450%, 870%);
+}
+
+.joinedPlayerName {
+    margin-top: 10px;
 }

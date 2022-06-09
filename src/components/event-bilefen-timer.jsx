@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import BilefenImage from '../images/bilefen.jpeg';
+import { BsFillBellSlashFill, BsBellFill } from 'react-icons/bs';
 
 
 const EventBilefenTimer = ({ title }) => {
 
+    const [playAlarm, setPlayAlarm] = useState(false) // true === alarm.play()
 
     // condition a savoire quelle heure est la plus proche
     // 10:30 AM || 01:30 PM || 4:30 PM ||07:30 PM
     const getRightTime = () => {
-
-        
-
         const d = new Date()
         const nowHours = d.getHours();
         const nowMinutes = d.getMinutes();
@@ -31,6 +30,20 @@ const EventBilefenTimer = ({ title }) => {
             return `${d.getDate()}/${d.getMonth()+1}/2022 10:30:00`;
         }
     }
+
+    const setAlarm = () =>{
+        const timeoutAudio = document.getElementById("timeout_audio");
+        timeoutAudio.src = "http://soundbible.com/grab.php?id=1252&type=mp3";
+        timeoutAudio.load();
+
+        for (var i=0;i<=3;i++) {
+            (function(ind) {
+                setTimeout(function(){timeoutAudio.play();}, 100 + (3000 * ind));
+            })(i);
+        }
+        setPlayAlarm(false)
+    }
+
     const calculateTimeLeft = () => {
         // console.log('ici'+new Date(getRightTime()))
         let countDownDate = new Date(getRightTime());
@@ -43,6 +56,9 @@ const EventBilefenTimer = ({ title }) => {
             hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
             minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
             seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        }
+        if(playAlarm === true && timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes <= 5) {
+            setAlarm();
         }
         return timeLeft;
     }
@@ -57,10 +73,26 @@ const EventBilefenTimer = ({ title }) => {
         return () => clearTimeout(timer);
     })
 
+    const handleOnOffAlert = () => {
+        console.log(playAlarm)
+        if(playAlarm) {
+            setPlayAlarm(false)
+        } else {
+            setPlayAlarm(true)
+        }
+    }
+
     return(
         <div>
             <div className='ctnTimerAndTitle'>
-                <h2 className='ashwoldTitle'>{title}</h2>
+                <div className='ctnTitleAlarm'>
+                    <h2 className='ashwoldTitle'>{title}</h2>
+                    {playAlarm ? (
+                        <span onClick={handleOnOffAlert}><BsBellFill/></span>
+                    ) : (
+                        <span onClick={handleOnOffAlert}><BsFillBellSlashFill/></span>
+                    )}
+                </div>
                 <img className='ashwoldImg' src={BilefenImage}/>
                
                 <div className='ctnTimerBoss ctnTimerBossBilefen'>
@@ -76,9 +108,9 @@ const EventBilefenTimer = ({ title }) => {
                         <span>{timeLeft.seconds}</span>
                         <span className='titleTimer'>SECONDES</span>
                     </div>
-
                 </div>
             </div>
+            <audio id="timeout_audio"></audio>
         </div>
     )
 }

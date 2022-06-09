@@ -4,7 +4,7 @@ import { firebase } from '../util/firebase';
 
 const db = firebase.database();
 
-const CreateReservationPanel = ({ createReservationToShow, getEmailFromLogin }) => {
+const CreateReservationPanel = ({ createReservationToShow, getEmailFromLogin, getProfilFromLogin }) => {
 
     const [userUid, setUserUid] = useState('')
     const [countForShow, setCountForShow] = useState(1)
@@ -18,7 +18,7 @@ const CreateReservationPanel = ({ createReservationToShow, getEmailFromLogin }) 
     const handleSubmitReservation = () => {
         const dungeon = document.querySelector("#dungeon").value
         const playerNeeded = document.querySelector("#nbPlayer").value
-
+        console.log(getProfilFromLogin[4])
 
         const reservationRef = db.ref(`reservation/${getEmailFromLogin}`);
         const newReservationRef = reservationRef.push();
@@ -29,10 +29,16 @@ const CreateReservationPanel = ({ createReservationToShow, getEmailFromLogin }) 
         newReservationRef.set({
             dungeon: dungeon,
             playerNeeded: playerNeeded,
-            user: getEmailFromLogin
+            user: getEmailFromLogin,
+            battleTag: getProfilFromLogin[4],
+            uid: newReservationRef.key,
+            email: getEmailFromLogin,
+            player1: getProfilFromLogin[4],
+            player2: null,
+            player3: null,
+            player4: null,
+            alarm: false
         });
-        
-
         //TODO: retourner l'utilisateur au visuel des reservation
         
     

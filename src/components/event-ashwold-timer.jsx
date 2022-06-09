@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './event-ashwold-timer.css';
 import AshwoldImage from '../images/ashwold.jpeg';
-
-
+import { BsFillBellSlashFill, BsBellFill } from 'react-icons/bs';
 
 const EventAshwoldTimer = ({ title }) => {
+
+    const [playAlarm, setPlayAlarm] = useState(false) // true === alarm.play()
+    
     const getFirstDayTuesdayOrSaturday = () => {
         const now = new Date()
         //trouver le prochain mardi
@@ -49,6 +51,19 @@ const EventAshwoldTimer = ({ title }) => {
            
     }
 
+    const setAlarm = () =>{
+        const timeoutAudio = document.getElementById("timeout_audio");
+        timeoutAudio.src = "http://soundbible.com/grab.php?id=1252&type=mp3";
+        timeoutAudio.load();
+
+        for (var i=0;i<=3;i++) {
+            (function(ind) {
+                setTimeout(function(){timeoutAudio.play();}, 100 + (3000 * ind));
+            })(i);
+        }
+        setPlayAlarm(false)
+    }
+
     const calculateTimeLeft = () => {
         let countDownDate = new Date(getFirstDayTuesdayOrSaturday()).getTime();
         var now = new Date().getTime();
@@ -59,6 +74,9 @@ const EventAshwoldTimer = ({ title }) => {
             hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
             minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
             seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        }
+        if(playAlarm === true && timeLeft.days === 0 && timeLeft.hours === 0 && timeLeft.minutes <= 5) {
+            setAlarm();
         }
         return timeLeft;
     }
@@ -73,10 +91,25 @@ const EventAshwoldTimer = ({ title }) => {
         return () => clearTimeout(timer);
     })
 
+    const handleOnOffAlert = () => {
+        console.log(playAlarm)
+        if(playAlarm) {
+            setPlayAlarm(false)
+        } else {
+            setPlayAlarm(true)
+        }
+    }
+
     return(
         <div className='ctnTimerAndTitle'>
-            
-            <h2 className='ashwoldTitle'>{title}</h2>
+            <div className='ctnTitleAlarm'>
+                <h2 className='ashwoldTitle'>{title}</h2>
+                {playAlarm ? (
+                    <span onClick={handleOnOffAlert}><BsBellFill/></span>
+                ) : (
+                    <span onClick={handleOnOffAlert}><BsFillBellSlashFill/></span>
+                )}
+            </div>
             <img className='ashwoldImg' src={AshwoldImage}/>
             <p className='ctnDayTime'>{timeLeft.days} JOURS</p>
             <div className='ctnTimerBoss'>
@@ -92,8 +125,8 @@ const EventAshwoldTimer = ({ title }) => {
                 <span>{timeLeft.seconds}</span>
                     <span className='titleTimer'>SECONDES</span>
                 </div>
-
             </div>
+            <audio id="timeout_audio"></audio>
         </div>
     )
 }
