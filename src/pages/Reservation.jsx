@@ -64,7 +64,7 @@ const Reservation = ({ getEmailFromLogin, getProfilFromLogin }) => {
             ) : (
                 <>
                     <button onClick={handleShowCreate}>Show</button>
-                    <CreateReservationPanel getProfilFromLogin={getProfilFromLogin} createReservationToShow={createReservationToShow} getEmailFromLogin={getEmailFromLogin} />
+                    <CreateReservationPanel setIsShow={setIsShow} getProfilFromLogin={getProfilFromLogin} createReservationToShow={createReservationToShow} getEmailFromLogin={getEmailFromLogin} />
                 </>
             )}
         </div>

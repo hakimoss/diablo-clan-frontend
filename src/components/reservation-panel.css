@@ -60,3 +60,12 @@
 .joinedPlayerName {
     margin-top: 10px;
 }
+
+.ctnRadioInput {
+    display: flex;
+}
+
+.iconUnmuteShowReservaton {
+    position: absolute;
+    transform: translate(1150%, 10%);
+}
