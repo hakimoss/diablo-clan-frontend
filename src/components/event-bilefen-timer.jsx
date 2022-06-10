@@ -15,13 +15,13 @@ const EventBilefenTimer = ({ title }) => {
         const nowMinutes = d.getMinutes();
         // console.log(nowHours)
         // console.log(nowMinutes)
-        if(nowHours <= 10) {
+        if(nowHours < 10 || nowHours === 10 && nowMinutes <= 30) {
             return new Date(`${d.getDate()}/${d.getMonth()+1}/2022 10:30:00`);
-        } else if(nowHours >= 11 && nowHours < 14) {
+        } else if(nowHours >= 11 && nowHours < 14 || nowHours === 13 && nowMinutes <= 30) {
             return new Date(`${d.getDate()}/${d.getMonth()+1}/2022 13:30:00`);
-        } else if(nowHours >= 14 && nowHours < 16) {
+        } else if(nowHours >= 14 && nowHours < 16 || nowHours === 16 && nowMinutes <= 30) {
             return new Date(`${d.getDate()}/${d.getMonth()+1}/2022 16:30:00`);
-        } else if(nowHours >= 16 && nowHours < 20) {
+        } else if(nowHours >= 16 && nowHours < 20 || nowHours === 19 && nowMinutes <= 30) {
             return new Date(`${d.getDate()}/${d.getMonth()+1}/2022 19:30:00`);
         } else if(nowHours >= 20) {
             // console.log(d.getDate())
@@ -97,15 +97,15 @@ const EventBilefenTimer = ({ title }) => {
                
                 <div className='ctnTimerBoss ctnTimerBossBilefen'>
                     <div className='ctnTimesBox'>
-                        <span>{timeLeft.hours}</span>
+                        <span className='fontTime'>{timeLeft.hours}</span>
                         <span className='titleTimer'>HEURES</span>
                     </div>
                     <div className='ctnTimesBox'>
-                        <span>{timeLeft.minutes}</span>
+                        <span className='fontTime'>{timeLeft.minutes}</span>
                         <span className='titleTimer'>MINUTES</span>
                     </div>
                     <div className='ctnTimesBox'>
-                        <span>{timeLeft.seconds}</span>
+                        <span className='fontTime'>{timeLeft.seconds}</span>
                         <span className='titleTimer'>SECONDES</span>
                     </div>
                 </div>

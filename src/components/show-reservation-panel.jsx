@@ -139,21 +139,21 @@ const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
                 'alarm': true
             })
             setIsShowJoinButton(false)
-        } else if(maxPlayer === 8 && e.target.parentElement.children[9].innerHTML === "" && e.target.parentElement.children[5].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[6].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[7].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[8].innerHTML !== getProfilFromLogin[4]) {
+        } else if(maxPlayer === 8 && e.target.parentElement.children[10].innerHTML === "" && e.target.parentElement.children[5].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[6].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[7].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[8].innerHTML !== getProfilFromLogin[4]) {
             reservationRef.update({
                 'playerNeeded': nbPlayer,
                 'player6': getProfilFromLogin[4],
                 'alarm': true
             })
             setIsShowJoinButton(false)
-        } else if(maxPlayer === 8 && e.target.parentElement.children[9].innerHTML === "" && e.target.parentElement.children[5].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[6].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[7].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[8].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[9].innerHTML !== getProfilFromLogin[4]) {
+        } else if(maxPlayer === 8 && e.target.parentElement.children[11].innerHTML === "" && e.target.parentElement.children[5].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[6].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[7].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[8].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[9].innerHTML !== getProfilFromLogin[4]) {
             reservationRef.update({
                 'playerNeeded': nbPlayer,
                 'player7': getProfilFromLogin[4],
                 'alarm': true
             })
             setIsShowJoinButton(false)
-        } else if(maxPlayer === 8 && e.target.parentElement.children[9].innerHTML === "" && e.target.parentElement.children[5].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[6].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[7].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[8].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[9].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[10].innerHTML !== getProfilFromLogin[4]) {
+        } else if(maxPlayer === 8 && e.target.parentElement.children[12].innerHTML === "" && e.target.parentElement.children[5].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[6].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[7].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[8].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[9].innerHTML !== getProfilFromLogin[4] && e.target.parentElement.children[10].innerHTML !== getProfilFromLogin[4]) {
             reservationRef.update({
                 'playerNeeded': nbPlayer,
                 'player8': getProfilFromLogin[4],
@@ -263,7 +263,6 @@ const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
                 <FiUsers />
                 <span>{data.data.playerNeeded}/{maxPlayer}</span>
             </div>
-
             <span className='joinedPlayerName'>{data.data.player1}</span>
             <span className='joinedPlayerName'>{data.data.player2}</span>
             <span className='joinedPlayerName'>{data.data.player3}</span>

@@ -114,15 +114,15 @@ const EventAshwoldTimer = ({ title }) => {
             <p className='ctnDayTime'>{timeLeft.days} JOURS</p>
             <div className='ctnTimerBoss'>
                 <div className='ctnTimesBox'>
-                    <span>{timeLeft.hours}</span>
+                    <span className='fontTime'>{timeLeft.hours}</span>
                     <span className='titleTimer'>HEURES</span>
                 </div>
                 <div className='ctnTimesBox'>
-                    <span>{timeLeft.minutes}</span>
+                    <span className='fontTime'>{timeLeft.minutes}</span>
                     <span className='titleTimer'>MINUTES</span>
                 </div>
                 <div className='ctnTimesBox'>
-                <span>{timeLeft.seconds}</span>
+                    <span className='fontTime'>{timeLeft.seconds}</span>
                     <span className='titleTimer'>SECONDES</span>
                 </div>
             </div>

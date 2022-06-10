@@ -36,6 +36,10 @@ const CreateReservationPanel = ({ createReservationToShow, getEmailFromLogin, ge
             player2: null,
             player3: null,
             player4: null,
+            player5: null,
+            player6: null,
+            player7: null,
+            player8: null,
             alarm: false
         });
         setIsShow(true)
