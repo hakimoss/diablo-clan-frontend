@@ -19,7 +19,7 @@ import { BsFillBellSlashFill, BsBellFill } from 'react-icons/bs';
 
 const db = firebase.database();
 
-const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
+const ShowReservationPanel = ({ data, getProfilFromLogin, signalFromReservation }) => {
 
     const [newData, setNewData] = useState([]);
     const [image, setImage] = useState();
@@ -109,7 +109,6 @@ const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
         
         const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
         
-        console.log(e.target.parentElement.children[5].innerHTML)
         
         if(e.target.parentElement.children[6].innerHTML === "" && e.target.parentElement.children[5].innerHTML !== getProfilFromLogin[4]) {
             reservationRef.update({
@@ -170,7 +169,6 @@ const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
 
 
     const handleLeaveRoom = (e) => {
-        console.log(e.target.parentElement.children[5].innerHTML)
         // e.target.parentElement.children[5].innerHTML == 2ieme place
         let nbPlayer = parseInt(e.target.parentElement.children[4].children[1].firstChild.textContent) -1
         const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
@@ -225,10 +223,8 @@ const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
             setIsShowJoinButton(true)
         }
     }
-   
 
     useEffect(() => {
-        console.log(data.data)
         if(data.data.alarm === true && data.data.battleTag === getProfilFromLogin[4]) {
             const timeoutAudio = document.getElementById("timeout_audio");
             timeoutAudio.src = "http://soundbible.com/grab.php?id=1252&type=mp3";
@@ -237,7 +233,6 @@ const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
                 timeoutAudio.load();
                 timeoutAudio.play();
                 x = x + 1;
-                console.log(x)
                 if(x === 3) {
                     clearInterval(myInterval)
                 }
@@ -249,6 +244,7 @@ const ShowReservationPanel = ({ data, getProfilFromLogin }) => {
             })
         }
     }, [data])
+   
 
     return(
         <div className='ctnShowReservationPanel'>

@@ -69,3 +69,9 @@
     position: absolute;
     transform: translate(1150%, 10%);
 }
+
+.linkCreateReservation {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}
