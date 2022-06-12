@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import Login from "./pages/Login";
 import { useState } from "react";
 import Footer from "./components/footer";
+import Warband from "./pages/Warband";
 
 
 
@@ -38,6 +39,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<PrivateRoute><Home /></PrivateRoute>} />
         <Route exact path="/reservation" element={<PrivateRoute><Reservation signalFromReservation={signalFromReservation} getProfilFromLogin={profil} getEmailFromLogin={email} /></PrivateRoute>} />
+        <Route exact path="/warband" element={<PrivateRoute><Warband /></PrivateRoute>} />
         <Route exact path="/guide" element={<PrivateRoute><Guide /></PrivateRoute>} />
         <Route exact path="/login" element={<Login getProfilFromLogin={getProfilFromLogin} getEmailFromLogin={getEmailFromLogin} />} />
         <Route path="*" element={<NotFounds />} />

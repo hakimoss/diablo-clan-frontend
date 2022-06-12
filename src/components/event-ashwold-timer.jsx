@@ -129,6 +129,6 @@ const EventAshwoldTimer = ({ title }) => {
             <audio id="timeout_audio"></audio>
         </div>
     )
-}
+}  
 
 export default EventAshwoldTimer;

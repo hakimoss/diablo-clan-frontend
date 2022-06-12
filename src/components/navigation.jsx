@@ -18,7 +18,6 @@ const Navigation = ({ getProfilFromLogin, signalFromReservation }) => {
     return(
         <div className='ctnNavigation'>
             <img className='weedQc' src={logo} alt="weed qc logo" />
-            <p style={{ color: 'white'}}>{signalFromReservation}</p>
             {/* <span className='weedQc'>WEED QC</span> */}
             <div className='ctnLink'>
                 <NavLink to='/' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
@@ -30,6 +29,9 @@ const Navigation = ({ getProfilFromLogin, signalFromReservation }) => {
                     </NavLink>
                     {/* <div className='pointSignal'></div> */}
                 </div>
+                <NavLink to='/warband' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
+                    <span className='navigationLink'>Warband</span>
+                </NavLink>
                 <NavLink to='/guide' className={({ isActive }) => (isActive ? 'active' : 'inactive')}>
                     <span className='navigationLink'>Guide</span>
                 </NavLink>

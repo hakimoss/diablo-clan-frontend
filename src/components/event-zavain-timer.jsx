@@ -7,8 +7,65 @@ const EventZavainTimer = ({ title }) => {
 
     const [playAlarm, setPlayAlarm] = useState(false) // true === alarm.play()
 
-
+    // every Wednesday and Friday at 12pm, 8:30pm and 10pm 
     // 8:00 AM, 10:00 AM, 12:00 PM, 2:00 PM, 4:00 PM 06:00 PM, 8:00 PM, 10:00 PM, 12:00 AM
+    const getNextWednesdayOrFriday = () => {
+
+        let now = new Date();
+
+        var nextWednesday = new Date();
+        nextWednesday.setDate(nextWednesday.getDate() + (((3 + 7 - nextWednesday.getDay()) % 7) || 7));
+
+        var nextFriday = new Date();
+        nextFriday.setDate(nextFriday.getDate() + (((5 + 7 - nextFriday.getDay()) % 7) || 7));
+
+        // console.log("nextWednesday", nextWednesday.getDate())
+        // console.log("nextFriday", nextFriday.getDate())
+
+        if(nextWednesday.getDate() < nextFriday.getDate()) {
+            // console.log("mercredi")
+            nextWednesday.setHours(12);
+            nextWednesday.setMinutes(0);
+            nextWednesday.setSeconds(0);
+            nextWednesday.setMilliseconds(0);
+            console.log(nextWednesday)
+            return nextWednesday;
+        } else if(nextFriday.getDate() < nextWednesday.getDate()) {
+            nextFriday.setHours(12);
+            nextFriday.setMinutes(0);
+            nextFriday.setSeconds(0);
+            nextFriday.setMilliseconds(0);
+            return nextFriday;
+        } else {
+            if(now.getHours() < 12) {
+                now.setHours(12);
+                now.setMinutes(0);
+                now.setSeconds(0);
+                now.setMilliseconds(0);
+                return now
+            } else if(now.getHours() < 20 || (now.getHours() === 20 && now.getMinutes() <= 30)) {
+                now.setHours(20);
+                now.setMinutes(30);
+                now.setSeconds(0);
+                now.setMilliseconds(0);
+                return now;
+            } else if(now.getHours() < 22) {
+                now.setHours(10);
+                now.setMinutes(0);
+                now.setSeconds(0);
+                now.setMilliseconds(0);
+                return now;
+            } else {
+                now.setHours(12);
+                now.setMinutes(0);
+                now.setSeconds(0);
+                now.setMilliseconds(0);
+                return now
+            }
+        }
+    }
+    getNextWednesdayOrFriday()
+
     const getRightTime = () => {
         let now = new Date()
         if(now.getHours() < 8) {
@@ -86,7 +143,7 @@ const EventZavainTimer = ({ title }) => {
         let d = new Date()
         // console.log(getRightTime())
         // console.log(d.getMonth())
-        let countDownDate = new Date(getRightTime()).getTime();
+        let countDownDate = new Date(getNextWednesdayOrFriday()).getTime();
         // console.log(countDownDate)
         var now = new Date().getTime();
         var distance = countDownDate - now;
@@ -136,7 +193,8 @@ const EventZavainTimer = ({ title }) => {
                     )}
                 </div>
                 <img className='ashwoldImg' src={ZavainImage}/>
-                <div className='ctnTimerBoss ctnTimerBossBilefen'>
+                <p className='ctnDayTime'>{timeLeft.days} JOURS</p>
+                <div className='ctnTimerBoss'>
                     <div className='ctnTimesBox'>
                         <span className='fontTime'>{timeLeft.hours}</span>
                         <span className='titleTimer'>HEURES</span>
