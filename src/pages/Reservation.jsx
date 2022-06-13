@@ -56,8 +56,6 @@ const Reservation = ({ getEmailFromLogin, getProfilFromLogin, signalFromReservat
 
     return(
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '210px    '}}>
-            {/* Reservation */}
-         
             {isShow ? (
                 <>
                     <p>Pour crée une réservation de raid/dungeon/rift <span className='linkCreateReservation' onClick={handleShowCreate}>cliquer ici</span></p>

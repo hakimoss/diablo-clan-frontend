@@ -21,12 +21,17 @@ const EventRealmOfDamnationTimer = ({ title }) => {
         var nextSunday = new Date();
         nextSunday.setDate(nextSunday.getDate() + (((7 + 7 - nextSunday.getDay()) % 7) || 7));
 
+        // if(now.getHours() >= 22) {
+           
+        //     now.setDate(`${now.getDate()+1}/${now.getMonth()}/2022`)
+            
+        // }
 
         // console.log("nextMonday", nextMonday.getDate())
         // console.log("nextTuesday", nextTuesday.getDate())
         // console.log("nextSunday", nextSunday.getDate())
 
-        if(nextMonday.getDate() < nextTuesday.getDate() && nextMonday.getDate() < nextSunday.getDate() && now.getDay() !== 0 && now.getDay() !== 2) {
+        if(nextMonday.getDate() < nextTuesday.getDate() && nextMonday.getDate() < nextSunday.getDate()) {
             // lundi
             console.log('lundi');
             nextMonday.setHours(12);
@@ -35,52 +40,23 @@ const EventRealmOfDamnationTimer = ({ title }) => {
             nextMonday.setMilliseconds(0);
             return nextMonday;
 
-        } else if(nextTuesday.getDate() < nextMonday.getDate() && nextTuesday.getDate() < nextSunday.getDate() && now.getDay() !== 0 && now.getDay() !== 1) {
+        } else if(nextTuesday.getDate() < nextMonday.getDate() && nextTuesday.getDate() < nextSunday.getDate()) {
             // mardi
-            console.log('mardi')
             nextTuesday.setHours(12);
             nextTuesday.setMinutes(0);
             nextTuesday.setSeconds(0);
             nextTuesday.setMilliseconds(0);
             return nextTuesday;
 
-        } else if(nextSunday.getDate() < nextMonday.getDate() && nextSunday.getDate() < nextTuesday.getDate() && now.getDay() !== 1 && now.getDay() !== 2) {
+        } else if(nextSunday.getDate() < nextMonday.getDate() && nextSunday.getDate() < nextTuesday.getDate()) {
             // dimanche
-            console.log('dimache')
             nextSunday.setHours(12);
             nextSunday.setMinutes(0);
             nextSunday.setSeconds(0);
             nextSunday.setMilliseconds(0);
             return nextSunday;
-            // if(now.getDate() === nextSunday.getDate() && now.getHours < 12) {
-            //     console.error.log('pas strict 12h')
-            //     nextSunday.setHours(12);
-            //     nextSunday.setMinutes(0);
-            //     nextSunday.setSeconds(0);
-            //     nextSunday.setMilliseconds(0);
-            //     return nextSunday;
-            // } else if(now.getDate() === nextSunday.getDate() && (now.getHours < 20 || (now.getHours === 20 && now.getMinutes() <= 30))) {
-            //     console.error.log('8h30')
-            //     nextSunday.setHours(20);
-            //     nextSunday.setMinutes(30);
-            //     nextSunday.setSeconds(0);
-            //     nextSunday.setMilliseconds(0);
-            //     return nextSunday;
-            // } else if(now.getDate() === nextSunday.getDate() && now.getHours < 22) {
-            //     console.error.log('10h00')
-            //     nextSunday.setHours(10);
-            //     nextSunday.setMinutes(0);
-            //     nextSunday.setSeconds(0);
-            //     nextSunday.setMilliseconds(0);
-            //     return nextSunday;
-            // } else {
-            //     nextSunday.setHours(12);
-            //     nextSunday.setMinutes(0);
-            //     nextSunday.setSeconds(0);
-            //     nextSunday.setMilliseconds(0);
-            //     return nextSunday;
-            // }
         } else {
+            // console.log('ici')
             if(now.getHours() < 12) {
                 now.setHours(12);
                 now.setMinutes(0);
@@ -109,7 +85,6 @@ const EventRealmOfDamnationTimer = ({ title }) => {
         }
         
     }
-    getNextMondauThursaySunday()
 
     const setAlarm = () =>{
         const timeoutAudio = document.getElementById("timeout_audio");

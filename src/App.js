@@ -37,7 +37,7 @@ function App() {
       <Navigation signalFromReservation={signalForNav} getProfilFromLogin={profil} />
 
       <Routes>
-        <Route exact path='/' element={<PrivateRoute><Home /></PrivateRoute>} />
+        <Route exact path='/' element={<Home />} />
         <Route exact path="/reservation" element={<PrivateRoute><Reservation signalFromReservation={signalFromReservation} getProfilFromLogin={profil} getEmailFromLogin={email} /></PrivateRoute>} />
         <Route exact path="/warband" element={<PrivateRoute><Warband /></PrivateRoute>} />
         <Route exact path="/guide" element={<PrivateRoute><Guide /></PrivateRoute>} />

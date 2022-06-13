@@ -28,7 +28,7 @@ const EventZavainTimer = ({ title }) => {
             nextWednesday.setMinutes(0);
             nextWednesday.setSeconds(0);
             nextWednesday.setMilliseconds(0);
-            console.log(nextWednesday)
+            // console.log(nextWednesday)
             return nextWednesday;
         } else if(nextFriday.getDate() < nextWednesday.getDate()) {
             nextFriday.setHours(12);
@@ -64,67 +64,8 @@ const EventZavainTimer = ({ title }) => {
             }
         }
     }
-    getNextWednesdayOrFriday()
 
-    const getRightTime = () => {
-        let now = new Date()
-        if(now.getHours() < 8) {
-            now.setHours(8)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 8 && now.getHours() < 10) {
-            now.setHours(10)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 10 && now.getHours() < 12) {
-            now.setHours(12)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 12 && now.getHours() < 14) {
-            now.setHours(14)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 14 && now.getHours() < 16) {
-            now.setHours(16)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 16 && now.getHours() < 18) {
-            now.setHours(18)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 18 && now.getHours() < 20) {
-            now.setHours(20)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 20 && now.getHours() < 22) {
-            now.setHours(22)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        } else if(now.getHours() >= 22 && now.getHours() < 24) {
-            now.setHours(24)
-            now.setMinutes(0)
-            now.setSeconds(0)
-            now.setMilliseconds(0)
-            return now;
-        }
-       
-    }
+    
 
     const setAlarm = () =>{
         const timeoutAudio = document.getElementById("timeout_audio");
@@ -173,7 +114,7 @@ const EventZavainTimer = ({ title }) => {
     
 
     const handleOnOffAlert = () => {
-        console.log(playAlarm)
+        // console.log(playAlarm)
         if(playAlarm) {
             setPlayAlarm(false)
         } else {

@@ -26,6 +26,7 @@ const ShowReservationPanel = ({ data, getProfilFromLogin, signalFromReservation 
     const [imageAlt, setImageAlt] = useState();
     const [msgError, setMsgError] = useState("")
     const [maxPlayer, setMaxPlayer] = useState(4);
+    const [uidRoom, setUidRoom] = useState("");
 
     const [isShowJoinButton, setIsShowJoinButton] = useState(true) // true === he can join
 
@@ -98,7 +99,7 @@ const ShowReservationPanel = ({ data, getProfilFromLogin, signalFromReservation 
     }, [data])
 
     const handleJoinRoom = (e) => {
-
+        setUidRoom(data.data.uid);
         if(parseInt(e.target.parentElement.children[4].children[1].firstChild.textContent) >= maxPlayer) {
             setMsgError("Aucune place disponible")
             setTimeout(() => { setMsgError("") }, 2000);
@@ -245,7 +246,75 @@ const ShowReservationPanel = ({ data, getProfilFromLogin, signalFromReservation 
         }
     }, [data])
    
-
+   
+    useEffect(() => {
+        console.log(data.data.uid)
+        if(data.data.player2 === getProfilFromLogin[4]) {
+            console.log("player2")
+            const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
+            let playerNeeded = data.data.playerNeeded - 1
+            reservationRef.onDisconnect().update({
+                'playerNeeded': playerNeeded,
+                'player2': null,
+                'alarm': true
+            })
+        } else if(data.data.player3 === getProfilFromLogin[4]) {
+            console.log("player3")
+            const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
+            let playerNeeded = data.data.playerNeeded - 1
+            reservationRef.onDisconnect().update({
+                'playerNeeded': playerNeeded,
+                'player3': null,
+                'alarm': true
+            })
+        } else if(data.data.player4 === getProfilFromLogin[4]) {
+            console.log("player4")
+            const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
+            let playerNeeded = data.data.playerNeeded - 1
+            reservationRef.onDisconnect().update({
+                'playerNeeded': playerNeeded,
+                'player4': null,
+                'alarm': true
+            })
+        } else if(data.data.player5 === getProfilFromLogin[4]) {
+            console.log("player5")
+            const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
+            let playerNeeded = data.data.playerNeeded - 1
+            reservationRef.onDisconnect().update({
+                'playerNeeded': playerNeeded,
+                'player5': null,
+                'alarm': true
+            })
+        } else if(data.data.player6 === getProfilFromLogin[4]) {
+            console.log("player6")
+            const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
+            let playerNeeded = data.data.playerNeeded - 1
+            reservationRef.onDisconnect().update({
+                'playerNeeded': playerNeeded,
+                'player6': null,
+                'alarm': true
+            })
+        } else if(data.data.player7 === getProfilFromLogin[4]) {
+            console.log("player7")
+            const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
+            let playerNeeded = data.data.playerNeeded - 1
+            reservationRef.onDisconnect().update({
+                'playerNeeded': playerNeeded,
+                'player7': null,
+                'alarm': true
+            })
+        } else if(data.data.player8 === getProfilFromLogin[4]) {
+            console.log("player8")
+            const reservationRef = db.ref(`reservation/${data.data.email}/${data.data.uid}`);
+            let playerNeeded = data.data.playerNeeded - 1
+            reservationRef.onDisconnect().update({
+                'playerNeeded': playerNeeded,
+                'player8': null,
+                'alarm': true
+            })
+        }
+    })
+  
     return(
         <div className='ctnShowReservationPanel'>
             <span className='dungeonTitleShowPanel'>{data.data.dungeon}</span>
@@ -257,7 +326,7 @@ const ShowReservationPanel = ({ data, getProfilFromLogin, signalFromReservation 
             <img src={image} alt={imageAlt} />
             <div className='ctnProfilInRoom'>
                 <FiUsers />
-                <span>{data.data.playerNeeded}/{maxPlayer}</span>
+                <span className='playerNeededValue'>{data.data.playerNeeded}/{maxPlayer}</span>
             </div>
             <span className='joinedPlayerName'>{data.data.player1}</span>
             <span className='joinedPlayerName'>{data.data.player2}</span>
@@ -283,6 +352,7 @@ const ShowReservationPanel = ({ data, getProfilFromLogin, signalFromReservation 
                 
             )}
             <audio id="timeout_audio"></audio>
+            {/* <button onClick={test123}>test</button> */}
 
         </div>
     )
