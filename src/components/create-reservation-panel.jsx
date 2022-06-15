@@ -59,6 +59,7 @@ const CreateReservationPanel = ({ createReservationToShow, getEmailFromLogin, ge
                         <option value="Pit of Anguish">Pit of Anguish</option>
                         <option value="Temple of Namari">Temple of Namari</option>
                         <option value="Tomb of Fahir">Tomb of Fahir</option>
+                        <option value="Immortal Vault">Immortal Vault</option>
                     `;
         } else if (switchCategories === 1) {
             console.log("switch 2")
@@ -70,7 +71,6 @@ const CreateReservationPanel = ({ createReservationToShow, getEmailFromLogin, ge
             console.log("switch 3")
             return `
                         <option value="Lassal Helliquary">Lassal Helliquary</option>
-                        <option value="Immortal Vault">Immortal Vault</option>
                     `;
         }
       };

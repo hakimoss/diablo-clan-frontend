@@ -13,6 +13,40 @@ const Login = ({ getEmailFromLogin, getProfilFromLogin }) => {
     const [isToCreateAccount, setIsToCreateAccount] = useState(false); // true = page Create Account
     const [isLoading, setIsLoading] = useState(false); // true === loading
 
+    const handleSubmitCreateAccount = () => {
+        const userName = document.querySelector('.userNameInput').value
+        const password = document.querySelector('.createPasswordInput').value
+        const passwordConfirm = document.querySelector('.passwordConfirmInput').value
+        const email = document.querySelector('.createEmailInput').value
+        const battleTag = document.querySelector('.battleTagInput').value
+
+        
+        if(password !== passwordConfirm) {
+            setMsgError('The email and password do not match !')
+        } else if(userName === '' || password === '' || passwordConfirm === '' || email === '') {
+            setMsgError("The fields need to be filled in")
+
+        } else {
+            
+            const account = {
+                userName: userName,
+                password: password,
+                email: email,
+                battleTag: battleTag
+            }
+            // AccountService.createAccount(account);
+            AccountServices.createAccount(account).then(data => {
+                // let value = Object.values(data)
+                if(data === undefined) {
+                    setIsToCreateAccount(false)
+                } else {
+                    setMsgError("Email already used")
+                }
+            })
+            
+        }
+        
+    }
 
     const handleConnect = async () => {
         const email = document.querySelector('.emailInput').value
@@ -58,35 +92,56 @@ const Login = ({ getEmailFromLogin, getProfilFromLogin }) => {
 
     return(
         <div>
-             <div className='backgroundLogin'>
-                <div className='ctnLoginComponent'>
-                    <h1 className='LoginTitle'>Login</h1>
-                    <input onChange={handleChangeError} onClick={handleChangeError} className='emailInput' type='text' placeholder='Email' />
-                    <input onChange={handleChangeError} onClick={handleChangeError} className='passwordInput' type='password' placeholder='Password' />
-                    <button onClick={handleConnect} className='loginBtn'>LOGIN</button>
-                    {msgError.length === 0 ? (
-                        <>
-                            {isLoading ? (
+            {!isToCreateAccount ? (
+                <>
+                    <div className='backgroundLogin'>
+                        <div className='ctnLoginComponent'>
+                            <h1 className='LoginTitle'>Login</h1>
+                            <input onChange={handleChangeError} onClick={handleChangeError} className='emailInput' type='text' placeholder='Email' />
+                            <input onChange={handleChangeError} onClick={handleChangeError} className='passwordInput' type='password' placeholder='Password' />
+                            <button onClick={handleConnect} className='loginBtn'>LOGIN</button>
+                            {msgError.length === 0 ? (
                                 <>
-                                    <ReactLoading type={"bars"} color={"#000000"} height={'20%'} width={'20%'} />
+                                    {isLoading ? (
+                                        <>
+                                            <ReactLoading type={"bars"} color={"#000000"} height={'15%'} width={'15%'} />
+                                        </>
+                                    ) : (
+                                        <>
+                    
+                                        </>
+                                    )}
                                 </>
                             ) : (
                                 <>
-            
+                                    <span style={{ color: 'red'}}>{msgError}</span>
                                 </>
-                            )}
-                        </>
-                    ) : (
-                        <>
-                            <span style={{ color: 'red'}}>{msgError}</span>
-                        </>
-                    )} 
-                    
-                    <div className='ctnLoginToCreateAccount'>
-                        <span className='textForCreateAccount'>Not a member ? <span onClick={handleToCreateAccount} className='linkToCreateAccount'>Create Account</span></span>
+                            )} 
+                            
+                            <div className='ctnLoginToCreateAccount'>
+                                <span className='textForCreateAccount'>Not a member ? <span onClick={handleToCreateAccount} className='linkToCreateAccount'>Create Account</span></span>
+                            </div>
+                        </div>    
                     </div>
-                </div>    
-            </div>
+                </>
+            ) : (   
+                <div className='backgroundLogin'>
+                    <div className='ctnCreateComponent'>
+                        <h1 className='createTitle'>Create Account</h1>
+                        <input className='createEmailInput' type='text' placeholder='Email' onChange={handleChangeError} onClick={handleChangeError} />
+                        <input className='userNameInput' type='text' placeholder='Username' onChange={handleChangeError} onClick={handleChangeError} />
+                        <input className='battleTagInput' type='text' placeholder='BattleTag' onChange={handleChangeError} onClick={handleChangeError} />
+                        <input className='createPasswordInput' type='password' placeholder='Password' onChange={handleChangeError} onClick={handleChangeError} />
+                        <input className='passwordConfirmInput' type='password' placeholder='Confirm Password' onChange={handleChangeError} onClick={handleChangeError} />
+                        <button onClick={handleSubmitCreateAccount} className='loginBtn'>Create Account</button>
+                        <span style={{ color: 'red', marginTop: '3%'}}>{msgError}</span>
+                        <div className='ctnLoginToCreateAccount'>
+                            <span className='textForCreateAccount'>Already a member ? <span onClick={handleToCreateAccount} className='linkToLogin'>Login</span></span>
+                        </div>
+                    </div>    
+                </div>
+                
+            )}
             <Home />
         </div>
     )

@@ -76,7 +76,7 @@ const Reservation = ({ getEmailFromLogin, getProfilFromLogin, signalFromReservat
                 </>
             ) : (
                 <>
-                    <button onClick={handleShowCreate}>Show</button>
+                    <p>Pour retourner voir les reservation <span className='linkCreateReservation' onClick={handleShowCreate}>cliquer ici</span></p>
                     <CreateReservationPanel setIsShow={setIsShow} getProfilFromLogin={getProfilFromLogin} createReservationToShow={createReservationToShow} getEmailFromLogin={getEmailFromLogin} />
                 </>
             )}

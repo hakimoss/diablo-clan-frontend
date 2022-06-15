@@ -8,7 +8,7 @@ export default class AccountServices {
             body: JSON.stringify(account),
         };
         
-        return fetch('https://diablo-clan-weedqc.herokuapp.com/', options)
+        return fetch('https://diablo-clan-weedqc.herokuapp.com/api/user', options)
             .then(response => response.json())
             .then(data => data)
             .catch(err => console.error(err));

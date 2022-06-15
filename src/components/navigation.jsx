@@ -37,7 +37,6 @@ const Navigation = ({ getProfilFromLogin, signalFromReservation }) => {
                 </NavLink>
             </div>
             <span className='userNameNavigation'>Bienvenu {getProfilFromLogin[3]}</span>
-            
         </div>
     )
 }
